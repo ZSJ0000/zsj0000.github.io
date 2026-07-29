@@ -1,0 +1,96 @@
+config-version: 25
+language: ch
+debug: false
+update-checker:
+  enabled: false
+metrics:
+  enabled: true
+limits:
+  max-bots: 1000
+  user-bot-limit: 0
+  spawn-presets: [1, 5, 10, 15, 20]
+spawn-cooldown: 0
+bot-name:
+  admin-format: '{bot_name}'
+  user-format: bot-{spawner}-{num}
+luckperms:
+  use-prefix: true
+  weight-ordering-enabled: true
+  bot-group: ''
+  packet-prefix-char: '{'
+  weight-offset: -10
+skin:
+  mode: auto
+  guaranteed-skin: true
+  fallback-name: Notch
+  overrides: {}
+  pool: []
+  use-skin-folder: true
+  clear-cache-on-reload: true
+body:
+  enabled: true
+persistence:
+  enabled: true
+join-delay: {min: 0, max: 1}
+leave-delay: {min: 0, max: 1}
+messages:
+  join-message: false
+  leave-message: false
+  kill-message: false
+  notify-admins-on-join: false
+combat:
+  max-health: 20.0
+  hurt-sound: true
+death:
+  respawn-on-death: false
+  respawn-delay: 60
+  suppress-drops: true
+chunk-loading:
+  enabled: true
+  radius: 6
+  update-interval: 20
+head-ai:
+  enabled: false
+  look-range: 8.0
+  turn-speed: 0.3
+collision:
+  walk-radius: 0.85
+  walk-strength: 0.22
+  hit-strength: 0.45
+  bot-radius: 0.9
+  bot-strength: 0.14
+  max-horizontal-speed: 0.3
+swap:
+  enabled: false
+  session-min: 120
+  session-max: 600
+  rejoin-delay-min: 5
+  rejoin-delay-max: 45
+  jitter: 30
+  reconnect-chance: 0.15
+  afk-kick-chance: 5
+  farewell-chat: true
+  greeting-chat: true
+  time-of-day-bias: true
+fake-chat:
+  enabled: false
+  require-player-online: false
+  chance: 0.75
+  interval: {min: 5, max: 10}
+tab-list:
+  enabled: true
+database:
+  enabled: true
+  mysql-enabled: false
+  mysql:
+    host: localhost
+    port: 3306
+    database: fpp
+    username: root
+    password: ''
+    use-ssl: false
+    pool-size: 5
+    connection-timeout: 30000
+  location-flush-interval: 30
+  session-history:
+    max-rows: 20
