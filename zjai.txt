@@ -1,0 +1,72 @@
+ZJAI 时间动态修正版
+====================
+
+将原来的：
+
+from datetime import datetime
+
+time = datetime.now().strftime(
+    "%Y-%m-%d %H:%M:%S"
+)
+
+替换为：
+
+from datetime import datetime, timedelta, timezone
+
+
+def get_current_time():
+    beijing_timezone = timezone(
+        timedelta(hours=8)
+    )
+
+    return datetime.now(
+        beijing_timezone
+    ).strftime("%Y-%m-%d %H:%M:%S")
+
+
+系统提示中使用：
+
+f"现在的时间是：{get_current_time()}\n"
+
+每次调用 run_agent() 前更新系统提示中的时间：
+
+
+def update_current_time():
+    current_time = get_current_time()
+
+    if not CHAT_MESSAGES:
+        return
+
+    if CHAT_MESSAGES[0].get("role") != "system":
+        return
+
+    content = CHAT_MESSAGES[0].get("content", "")
+    start_text = "现在的时间是："
+    end_text = "你的名称是："
+
+    start = content.find(start_text)
+    end = content.find(end_text)
+
+    if start < 0 or end <= start:
+        return
+
+    CHAT_MESSAGES[0]["content"] = (
+        content[:start]
+        + start_text
+        + current_time
+        + "\n"
+        + content[end:]
+    )
+
+
+在 run_agent() 开头调用：
+
+
+def run_agent(user_query):
+    global CHAT_MESSAGES
+
+    update_current_time()
+
+    # 后续保留原有代码
+
+说明：本文件不包含任何 API Key 或 Token。
